@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,9 +70,6 @@
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3.8rem, 7vw, 6.8rem); line-height: 0.92; letter-spacing: -0.05em; max-width: 760px; margin-bottom: 1.6rem; }
         .hero-subtitle { font-size: 1.2rem; color: var(--muted); line-height: 1.7; max-width: 500px; margin-bottom: 2.5rem; font-weight: 400; }
         .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
-        .hero-image-container { position: relative; width: 100%; max-width: 420px; }
-        .hero-image-wrapper { position: relative; border-radius: 28px; overflow: hidden; box-shadow: 0 40px 120px rgba(34,34,34,0.10); transform: rotate(-2deg); transition: transform 0.35s ease; }
-        .hero-image-wrapper:hover { transform: rotate(0deg) scale(1.02); }
         .hero-floating-elements { display: none; }
         .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
         .hero-badge { display: inline-flex; align-items:center; gap:0.7rem; background: rgba(255,255,255,0.98); padding: 0.8rem 1.2rem; border-radius: 50px; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); box-shadow: 0 8px 32px rgba(43,38,34,0.12); margin-bottom: 2rem; border: 1px solid rgba(201,162,39,0.2); }
@@ -89,9 +86,8 @@
         .hero-stat { text-align: center; }
         .hero-stat-number { display: block; font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
         .hero-stat-label { font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
-        .hero-image { width: 100%; height: 480px; object-fit: cover; filter: saturate(1.05) contrast(1.03); }
+        .hero-image { width: 100%; height: 480px; object-fit: cover; filter: saturate(1.05) contrast(1.03); display: block; }
         .hero-image-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0)); pointer-events: none; }
-        .hero-image-badge { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.98); padding: 0.8rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--primary); box-shadow: 0 8px 24px rgba(43,38,34,0.1); border: 1px solid rgba(201,162,39,0.2); }
         .floating-blob { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(201,162,39,0.12), rgba(201,162,39,0.04) 60%, transparent); animation: floatBlob 14s ease-in-out infinite; backdrop-filter: blur(1px); }
         .floating-blob:nth-child(1) { width: 140px; height: 140px; top: 8%; left: 6%; animation-delay: 0s; }
         .floating-blob:nth-child(2) { width: 100px; height: 100px; top: 25%; right: 10%; animation-delay: 4s; background: radial-gradient(circle at 30% 30%, rgba(139,26,26,0.10), rgba(139,26,26,0.03) 60%, transparent); }
@@ -104,12 +100,107 @@
             75% { transform: translateY(-70px) translateX(20px) scale(1.1) rotate(270deg); }
         }
 
+        /* ================================================
+           HERO FLIP CARD — infinite team photo ↔ logo
+           ================================================ */
+        .hero-flip-scene {
+            width: 100%;
+            max-width: 420px;
+            perspective: 1200px;
+            position: relative;
+        }
+        .hero-flip-card {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            transform-style: preserve-3d;
+            border-radius: 28px;
+            animation: heroFlipLoop 7s ease-in-out infinite;
+            transform-origin: center center;
+        }
+        @keyframes heroFlipLoop {
+            0%   { transform: rotate(-2deg) rotateY(0deg);   }
+            38%  { transform: rotate(-2deg) rotateY(0deg);   }
+            50%  { transform: rotate(0deg)  rotateY(180deg); }
+            88%  { transform: rotate(0deg)  rotateY(180deg); }
+            100% { transform: rotate(-2deg) rotateY(360deg); }
+        }
+        .hero-flip-front,
+        .hero-flip-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 28px;
+            overflow: hidden;
+        }
+        .hero-flip-front {
+            transform: rotateY(0deg);
+            box-shadow: 0 40px 120px rgba(34,34,34,0.12);
+        }
+
+        /* ── EDITED: transparent bg, no border, no shadow, bigger logo ── */
+        .hero-flip-back {
+            transform: rotateY(180deg);
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            box-shadow: none;
+        }
+        .hero-flip-back img {
+            width: 90%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 20px rgba(139,26,26,0.14));
+        }
+        /* ── END EDIT ── */
+
+        /* sheen sweep on the back face */
+        .hero-flip-back::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 30%, rgba(201,162,39,0.07) 50%, transparent 70%);
+            animation: sheenMove 3.5s ease-in-out infinite 1s;
+            pointer-events: none;
+        }
+        @keyframes sheenMove {
+            0%   { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        /* floating badge stays above the flip */
+        .hero-flip-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(255,255,255,0.98);
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: 0 8px 24px rgba(43,38,34,0.1);
+            border: 1px solid rgba(201,162,39,0.2);
+            pointer-events: none;
+            animation: badgePulse 7s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%,  35% { opacity: 1; }
+            48%,  90% { opacity: 0; }
+            100%      { opacity: 1; }
+        }
+
         .section { padding: 80px 24px; }
         .section.reveal-item,
         .hero-title.reveal-item,
         .hero-subtitle.reveal-item,
         .hero-buttons.reveal-item,
-        .hero-image-wrapper.reveal-item,
         .hero-content.reveal-item,
         .feature-card.reveal-item,
         .mockup-card.reveal-item,
@@ -130,7 +221,6 @@
         .hero-title.reveal-item.visible,
         .hero-subtitle.reveal-item.visible,
         .hero-buttons.reveal-item.visible,
-        .hero-image-wrapper.reveal-item.visible,
         .hero-content.reveal-item.visible,
         .feature-card.reveal-item.visible,
         .mockup-card.reveal-item.visible,
@@ -144,7 +234,6 @@
             transform: translateY(0px) skewY(0deg) scale(1);
             clip-path: inset(0 0 0 0);
         }
-        .hero-image-wrapper.reveal-item.visible { opacity: 1; transform: translateY(0px) skewY(0deg) scale(1) rotate(-2deg); clip-path: inset(0 0 0 0); }
         .feature-card.reveal-item.visible,
         .mockup-card.reveal-item.visible,
         .testimonial-card.reveal-item.visible,
@@ -205,66 +294,21 @@
            BOARD OF DIRECTORS — INFINITE CAROUSEL
            ================================================ */
         #board-of-directors { padding: 80px 24px; overflow: hidden; }
-
-        .bod-carousel-wrap {
-            position: relative;
-            overflow: hidden;
-            margin-top: 2.5rem;
-        }
+        .bod-carousel-wrap { position: relative; overflow: hidden; margin-top: 2.5rem; }
         .bod-carousel-wrap::before,
-        .bod-carousel-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0; width: 100px;
-            z-index: 3; pointer-events: none;
-        }
+        .bod-carousel-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 3; pointer-events: none; }
         .bod-carousel-wrap::before { left: 0; background: linear-gradient(to right, #fff 0%, transparent 100%); }
         .bod-carousel-wrap::after  { right: 0; background: linear-gradient(to left, #fff 0%, transparent 100%); }
-
-        .bod-track {
-            display: flex;
-            gap: 1.4rem;
-            width: max-content;
-            padding: 0.5rem 0 1.5rem;
-            animation: slideLeft 32s linear infinite;
-        }
+        .bod-track { display: flex; gap: 1.4rem; width: max-content; padding: 0.5rem 0 1.5rem; animation: slideLeft 32s linear infinite; }
         .bod-carousel-wrap:hover .bod-track { animation-play-state: paused; }
-
         @keyframes slideLeft {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-
-        .bod-card {
-            flex-shrink: 0;
-            width: 200px;
-            border: 1px solid rgba(17,12,9,0.07);
-            border-radius: 20px;
-            padding: 1.6rem 1.2rem 1.4rem;
-            text-align: center;
-            background: var(--surface);
-            box-shadow: 0 8px 28px rgba(34,34,34,0.05);
-            transition: transform 0.28s ease, box-shadow 0.28s ease;
-            cursor: default;
-        }
-        .bod-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 48px rgba(34,34,34,0.1);
-        }
-
-        .bod-photo {
-            width: 80px; height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            overflow: hidden;
-            border: 2.5px solid rgba(201,162,39,0.35);
-        }
-        .bod-photo-inner {
-            width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem; font-weight: 700; color: #fff;
-        }
+        .bod-card { flex-shrink: 0; width: 200px; border: 1px solid rgba(17,12,9,0.07); border-radius: 20px; padding: 1.6rem 1.2rem 1.4rem; text-align: center; background: var(--surface); box-shadow: 0 8px 28px rgba(34,34,34,0.05); transition: transform 0.28s ease, box-shadow 0.28s ease; cursor: default; }
+        .bod-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(34,34,34,0.1); }
+        .bod-photo { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 2.5px solid rgba(201,162,39,0.35); }
+        .bod-photo-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #fff; }
         .bod-photo-inner.pos-chair { background: linear-gradient(135deg, #8B1A1A, #C9A227); }
         .bod-photo-inner.pos-vice  { background: linear-gradient(135deg, #7a3010, #b08020); }
         .bod-photo-inner.pos-dir   { background: linear-gradient(135deg, #1a3a6b, #2d6b8b); }
@@ -272,7 +316,6 @@
         .bod-photo-inner.pos-sec   { background: linear-gradient(135deg, #4a1a6b, #8b30c9); }
         .bod-photo-inner.pos-audit { background: linear-gradient(135deg, #5c3a1a, #a07820); }
         .bod-photo-inner img { width: 100%; height: 100%; object-fit: cover; }
-
         .bod-card-name { font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 0.3rem; line-height: 1.3; }
         .bod-card-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 
@@ -346,8 +389,34 @@
         .contact-channels p { margin-bottom: 0.75rem; line-height: 1.5; }
         .contact-channels p:last-child { margin-bottom: 0; }
 
-        @media (max-width: 980px) { .hero-container { grid-template-columns: 1fr; gap: 2rem; text-align: center; } .hero-content { text-align: center; } .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; } .nav-links { display: none; } .navbar { justify-content: space-between; gap: 1rem; } }
-        @media (max-width: 720px) { .hero { min-height: auto; padding: 140px 24px 60px; } .hero-title { font-size: clamp(2.8rem, 10vw, 4rem); } .hero-subtitle { font-size: 1.1rem; } .hero-stats { grid-template-columns: 1fr; gap: 1.5rem; } .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; } .hero-stat-number { font-size: 2rem; } .footer-inner { grid-template-columns: 1fr; } .nav-actions { display: none; } .testimonials-grid { grid-template-columns: 1fr; } .news-item { grid-template-columns: 60px 1fr; } .vision-mission-grid { grid-template-columns: 1fr; } .certifications-grid { grid-template-columns: 1fr; } .newsletter-form { flex-direction: column; } }
+        @media (max-width: 980px) {
+            .hero-container { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .hero-content { text-align: center; }
+            .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .nav-links { display: none; }
+            .navbar { justify-content: space-between; gap: 1rem; }
+            .hero-flip-scene { max-width: 340px; margin: 0 auto; }
+            .hero-flip-card { height: 380px; }
+            .hero-image { height: 380px; }
+        }
+        @media (max-width: 720px) {
+            .hero { min-height: auto; padding: 140px 24px 60px; }
+            .hero-title { font-size: clamp(2.8rem, 10vw, 4rem); }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero-stat { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+            .hero-stat-number { font-size: 2rem; }
+            .hero-flip-scene { max-width: 280px; }
+            .hero-flip-card { height: 300px; }
+            .hero-image { height: 300px; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .nav-actions { display: none; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .news-item { grid-template-columns: 60px 1fr; }
+            .vision-mission-grid { grid-template-columns: 1fr; }
+            .certifications-grid { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
@@ -408,15 +477,33 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- ── HERO FLIP CARD ── -->
                 <div class="hero-visual">
-                    <div class="hero-image-container">
-                        <div class="hero-image-wrapper zoom-image">
-                            <img src="assets/team-photo.jpg" alt="KMPC Team Members" class="hero-image">
-                            <div class="hero-image-overlay"></div>
-                            <div class="hero-image-badge">Our KMPC Team</div>
+                    <div class="hero-flip-scene zoom-image">
+
+                        <div class="hero-flip-card">
+                            <!-- Front face: team photo -->
+                            <div class="hero-flip-front">
+                                <img src="assets/team-photo.jpg"
+                                     alt="KMPC Team Members"
+                                     class="hero-image">
+                                <div class="hero-image-overlay"></div>
+                            </div>
+
+                            <!-- Back face: KMPC logo (label removed) -->
+                            <div class="hero-flip-back">
+                                <img src="assets/kmpc-logotr.png" alt="KMPC Logo">
+                            </div>
                         </div>
+
+                        <!-- Badge sits outside the flipping card -->
+                        <div class="hero-flip-badge">Our KMPC Team</div>
+
                     </div>
                 </div>
+                <!-- ── END HERO FLIP CARD ── -->
+
             </div>
         </section>
 
@@ -453,7 +540,6 @@
                 <h2>Board of Directors</h2>
                 <p>Meet the dedicated leaders who guide KMPC with integrity and a commitment to every member's success.</p>
             </div>
-
             <div class="bod-carousel-wrap">
                 <div class="bod-track">
                     <!-- Original set -->
@@ -515,7 +601,7 @@
 
         <section class="section fade-up" id="vision-mission" style="background: linear-gradient(180deg, rgba(252,248,241,0.5), rgba(247,242,235,0.8));">
             <div class="section-title-center">
-                <div class="section-label">Vision, Mission & Goals</div>
+                <div class="section-label">Vision, Mission &amp; Goals</div>
                 <h2>What drives KMPC forward.</h2>
                 <p>Our shared commitment guides every decision and action we take.</p>
             </div>
@@ -578,7 +664,7 @@
                             <h4>Collaborative support</h4>
                             <p>We deliver member-driven initiatives that build trust and sustain long-term local growth.</p>
                             <ul>
-                                <li>Workshops & training</li>
+                                <li>Workshops &amp; training</li>
                                 <li>Local outreach events</li>
                                 <li>Member-first governance</li>
                             </ul>
@@ -622,9 +708,9 @@
                 </article>
                 <article class="mockup-card">
                     <div class="mockup-card-content">
-                        <h3 class="mockup-title">Governance & Planning</h3>
+                        <h3 class="mockup-title">Governance &amp; Planning</h3>
                         <p class="mockup-text">Showcase leadership, planning sessions, and committee meetings in clean visual layouts.</p>
-                        <a class="mockup-cta" href="governance_planning.html">Governance & Planning →</a>
+                        <a class="mockup-cta" href="governance_planning.html">Governance &amp; Planning →</a>
                     </div>
                 </article>
                 <article class="mockup-card">
@@ -770,7 +856,7 @@
 
     <section class="section fade-up" id="certifications" style="background: linear-gradient(180deg, rgba(139,26,26,0.02), rgba(201,162,39,0.02)); border-top: 1px solid rgba(139,26,26,0.08);">
         <div class="section-title-center">
-            <div class="section-label">Trust & Accreditation</div>
+            <div class="section-label">Trust &amp; Accreditation</div>
             <h2>KMPC certifications and regulatory compliance.</h2>
             <p>Our commitment to excellence is backed by official recognition and regulatory oversight.</p>
         </div>
@@ -791,7 +877,7 @@
                 <div class="certification-icon">▸</div>
                 <h3>Financial Transparency</h3>
                 <p>Regular financial audits and transparent reporting ensure accountability to all members and regulatory bodies.</p>
-                <span class="certification-status">Audited & Verified</span>
+                <span class="certification-status">Audited &amp; Verified</span>
             </article>
         </div>
     </section>
@@ -816,7 +902,7 @@
                     <li><a href="#about">About KMPC</a></li>
                     <li><a href="#board-of-directors">Board of Directors</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#news">News & Events</a></li>
+                    <li><a href="#news">News &amp; Events</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -845,7 +931,7 @@
         </div>
         <div class="footer-bottom">
             <span>&copy; 2026 KMPC. All rights reserved.</span>
-            <span>Registered with CDA • Privacy Compliant • Member-Owned & Operated</span>
+            <span>Registered with CDA • Privacy Compliant • Member-Owned &amp; Operated</span>
         </div>
     </footer>
 
