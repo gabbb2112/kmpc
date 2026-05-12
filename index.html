@@ -116,6 +116,7 @@
             transform-style: preserve-3d;
             border-radius: 28px;
             animation: heroFlipLoop 7s ease-in-out infinite;
+            /* slight tilt matching the old wrapper */
             transform-origin: center center;
         }
         @keyframes heroFlipLoop {
@@ -135,31 +136,36 @@
             -webkit-backface-visibility: hidden;
             border-radius: 28px;
             overflow: hidden;
+            box-shadow: 0 40px 120px rgba(34,34,34,0.12);
         }
         .hero-flip-front {
             transform: rotateY(0deg);
-            box-shadow: 0 40px 120px rgba(34,34,34,0.12);
         }
-
-        /* ── EDITED: transparent bg, no border, no shadow, bigger logo ── */
         .hero-flip-back {
             transform: rotateY(180deg);
-            background: transparent;
+            background: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 1.2rem;
-            box-shadow: none;
+            border: 2px solid rgba(201,162,39,0.3);
         }
         .hero-flip-back img {
-            width: 90%;
+            width: 65%;
             height: auto;
             object-fit: contain;
             filter: drop-shadow(0 6px 20px rgba(139,26,26,0.14));
         }
-        /* ── END EDIT ── */
-
+        .hero-flip-back-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
         /* sheen sweep on the back face */
         .hero-flip-back::after {
             content: '';
@@ -188,6 +194,7 @@
             box-shadow: 0 8px 24px rgba(43,38,34,0.1);
             border: 1px solid rgba(201,162,39,0.2);
             pointer-events: none;
+            /* fades out during back-face display so it doesn't look odd */
             animation: badgePulse 7s ease-in-out infinite;
         }
         @keyframes badgePulse {
@@ -491,9 +498,10 @@
                                 <div class="hero-image-overlay"></div>
                             </div>
 
-                            <!-- Back face: KMPC logo (label removed) -->
+                            <!-- Back face: KMPC logo -->
                             <div class="hero-flip-back">
-                                <img src="assets/kmpc-logotr.png" alt="KMPC Logo">
+                                <img src="assets/kmpc-logo.png" alt="KMPC Logo">
+                                <span class="hero-flip-back-label">Kerdos MPC</span>
                             </div>
                         </div>
 
@@ -981,5 +989,20 @@
             initPage();
         }
     </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a02a1c7ee7ca01c362e9324/1jod4ft2p';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
 </body>
 </html>
