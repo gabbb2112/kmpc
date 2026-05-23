@@ -3,207 +3,749 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMPC Member Celebration</title>
+    <title>KMPC — Christmas Party 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #8B1A1A;
-            --accent: #C9A227;
-            --bg: #f4efe6;
-            --surface: #ffffff;
-            --text: #2f2a24;
-            --muted: #6a635c;
-            --shadow: 0 24px 64px rgba(35,30,24,0.12);
-            --radius: 28px;
-            --transition: 0.32s ease;
+            --crimson:    #8B1A1A;
+            --crimson-dk: #5c0f0f;
+            --gold:       #C9A227;
+            --gold-lt:    #e8c455;
+            --gold-pale:  #f5e9c0;
+            --ink:        #1a1410;
+            --ivory:      #f6f0e4;
+            --ivory-dk:   #ede5d0;
+            --ash:        #4a4038;
+            --mist:       #9a9088;
+            --white:      #ffffff;
+
+            --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --shadow-sm:  0 2px 12px rgba(26,20,16,0.08);
+            --shadow-md:  0 8px 40px rgba(26,20,16,0.14);
+            --shadow-lg:  0 20px 80px rgba(26,20,16,0.22);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; }
-        img { width: 100%; display: block; border-radius: 20px; }
-        a { color: inherit; text-decoration: none; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ivory);
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-        header { position: fixed; inset: 0 0 auto 0; width: 100%; z-index: 30; backdrop-filter: blur(20px); background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.88) 100%); box-shadow: 0 2px 24px rgba(43,38,34,0.12), inset 0 1px 0 rgba(255,255,255,0.5); border-bottom: 1px solid rgba(201,162,39,0.1); }
-        .navbar { max-width: 1180px; margin: 0 auto; padding: 1.2rem 24px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-        .brand { display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease; }
-        .brand:hover { transform: translateX(2px); }
-        .brand-icon { width: 76px; height: 76px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 8px 28px rgba(139,26,26,0.15), inset 0 1px 3px rgba(255,255,255,0.8), 0 0 0 1px rgba(201,162,39,0.15); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; }
-        .brand-icon::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(139,26,26,0.04), transparent); }
-        .brand-icon:hover { transform: scale(1.1) rotate(2deg); box-shadow: 0 14px 36px rgba(139,26,26,0.18), inset 0 1px 3px rgba(255,255,255,0.9), 0 0 0 1px rgba(201,162,39,0.2); }
-        .brand-icon img { width: 85%; height: 85%; object-fit: contain; position: relative; z-index: 1; filter: brightness(1) contrast(1.1); }
-        .brand-icon::after { content: 'K'; position: absolute; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: rgba(139,26,26,0.1); z-index: 0; opacity: 0.2; }
-        .brand-text { line-height: 1.2; }
-        .brand-text .name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
-        .brand-text .tag { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-        .nav-links { display: flex; align-items: center; gap: 2.2rem; font-size: 0.95rem; flex: 1; }
-        .nav-links a { color: var(--muted); font-weight: 500; position: relative; transition: color 0.3s ease; animation: fadeIn 0.8s ease-out; animation-fill-mode: both; letter-spacing: 0.3px; }
-        .nav-links a:nth-child(1) { animation-delay: 0.3s; }
-        .nav-links a:nth-child(2) { animation-delay: 0.4s; }
-        .nav-links a:nth-child(3) { animation-delay: 0.5s; }
-        .nav-links a:nth-child(4) { animation-delay: 0.6s; }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0%; height: 2.5px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 1px; transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        /* ─── GRAIN OVERLAY ──────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 180px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.55;
+        }
+
+        /* ─── SNOWFALL ───────────────────────────────────── */
+        #snow { position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: 0.35; }
+
+        /* ─── CURSOR ─────────────────────────────────────── */
+        .cursor {
+            position: fixed; width: 10px; height: 10px;
+            border-radius: 50%; background: var(--crimson);
+            pointer-events: none; z-index: 9999;
+            transform: translate(-50%,-50%);
+            transition: width .25s var(--ease-out), height .25s var(--ease-out);
+        }
+        .cursor-ring {
+            position: fixed; width: 36px; height: 36px;
+            border-radius: 50%; border: 1.5px solid rgba(139,26,26,0.35);
+            pointer-events: none; z-index: 9998;
+            transform: translate(-50%,-50%);
+            transition: all .4s var(--ease-out);
+        }
+
+        /* ─── HEADER ─────────────────────────────────────── */
+        header {
+            position: fixed; inset: 0 0 auto 0;
+            z-index: 300;
+            backdrop-filter: blur(20px) saturate(1.4);
+            background: linear-gradient(180deg, rgba(246,240,228,0.94) 0%, rgba(246,240,228,0.88) 100%);
+            box-shadow: 0 1px 0 rgba(201,162,39,0.18), var(--shadow-sm);
+        }
+        .navbar {
+            max-width: 1200px; margin: 0 auto;
+            padding: 1.2rem 32px;
+            display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+        }
+        .brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+        .brand-icon {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: var(--white);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            box-shadow: 0 6px 24px rgba(139,26,26,0.14), 0 0 0 1px rgba(201,162,39,0.2);
+            transition: transform .4s var(--ease-spring), box-shadow .4s;
+        }
+        .brand-icon:hover { transform: scale(1.1) rotate(3deg); box-shadow: 0 12px 36px rgba(139,26,26,0.2), 0 0 0 2px var(--gold); }
+        .brand-icon img { width: 82%; height: 82%; object-fit: contain; }
+        .brand-text .name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+        .brand-text .tag  { font-size: 0.72rem; color: var(--gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; gap: 2.4rem; }
+        .nav-links a {
+            font-size: 0.88rem; font-weight: 500; color: var(--ash);
+            text-decoration: none; letter-spacing: 0.03em; position: relative; transition: color .25s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1.5px; background: var(--gold);
+            transition: width .35s var(--ease-spring);
+        }
+        .nav-links a:hover { color: var(--crimson); }
         .nav-links a:hover::after { width: 100%; }
-        .nav-actions { display: flex; gap: 1rem; align-items: center; }
-        .btn { border-radius: 12px; padding: 0.8rem 1.4rem; font-weight: 600; transition: all 0.3s ease; animation: scaleIn 0.6s ease-out; animation-fill-mode: both; font-size: 0.9rem; letter-spacing: 0.3px; position: relative; overflow: hidden; }
-        .btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0)); opacity: 0; transition: opacity 0.3s ease; }
-        .btn:hover::before { opacity: 1; }
-        .btn:nth-child(1) { animation-delay: 0.8s; }
-        .btn:nth-child(2) { animation-delay: 1s; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, #a01515 100%); color: #fff; border: 1px solid transparent; box-shadow: 0 6px 18px rgba(139,26,26,0.2); }
-        .btn-primary:hover { box-shadow: 0 12px 32px rgba(139,26,26,0.32); transform: translateY(-3px); }
-        .btn-secondary { background: rgba(201,162,39,0.08); color: var(--primary); border: 1.5px solid var(--accent); font-weight: 600; transition: all 0.3s ease; }
-        .btn-secondary:hover { background: rgba(201,162,39,0.15); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(201,162,39,0.2); }
-        .btn:hover { transform: translateY(-3px); }
-        .page-shell { max-width: 1120px; margin: 0 auto; padding: 120px 24px 48px; }
+        .nav-actions { display: flex; gap: .9rem; align-items: center; }
+        .btn {
+            border-radius: 10px; padding: .72rem 1.4rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.86rem; font-weight: 600;
+            text-decoration: none; border: none; cursor: pointer;
+            transition: transform .3s var(--ease-spring), box-shadow .3s;
+        }
+        .btn-primary { background: linear-gradient(135deg,var(--crimson),var(--crimson-dk)); color: var(--white); box-shadow: 0 4px 16px rgba(139,26,26,0.28); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(139,26,26,0.38); }
+        .btn-secondary { background: transparent; color: var(--crimson); border: 1.5px solid rgba(201,162,39,0.55); }
+        .btn-secondary:hover { background: rgba(201,162,39,0.1); transform: translateY(-3px); }
 
-        .hero { padding: 4rem 0 2rem; }
-        .hero-top { display: inline-flex; align-items: center; gap: 0.75rem; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; }
-        .hero-head { max-width: 760px; margin-top: 1rem; }
-        .hero-title { font-family:'Playfair Display', serif; font-size: clamp(3rem, 5vw, 4.2rem); line-height: 1.02; margin: 1rem 0 0.75rem; letter-spacing: -0.03em; }
-        .hero-copy { font-size: 1.05rem; color: var(--muted); max-width: 720px; }
+        /* ─── MAIN ───────────────────────────────────────── */
+        main { padding-top: 108px; }
 
-        .section { margin-top: 3rem; }
-        .section-title { display: grid; gap: 0.55rem; margin-bottom: 1.5rem; }
-        .section-title .label { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.82rem; color: var(--accent); }
-        .section-title h2 { font-size: clamp(2rem, 3vw, 2.6rem); }
+        /* ─── HERO ───────────────────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 96vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 65% 60% at 75% 35%, rgba(139,26,26,0.11) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 50% at 18% 72%, rgba(201,162,39,0.1) 0%, transparent 60%),
+                linear-gradient(170deg, #f6f0e4 0%, #ede5d0 100%);
+        }
+        /* Bokeh orbs – light tints */
+        .bokeh { position: absolute; border-radius: 50%; filter: blur(64px); pointer-events: none; animation: bokehFloat ease-in-out infinite alternate; }
+        .b1 { width:500px;height:500px; background:radial-gradient(circle,rgba(139,26,26,0.13),transparent 70%); right:-100px;top:-80px; animation-duration:9s; }
+        .b2 { width:340px;height:340px; background:radial-gradient(circle,rgba(201,162,39,0.13),transparent 70%); left:0;bottom:10%; animation-duration:11s;animation-delay:-4s; }
+        .b3 { width:220px;height:220px; background:radial-gradient(circle,rgba(139,26,26,0.09),transparent 70%); left:38%;top:25%; animation-duration:7s;animation-delay:-6s; }
+        .b4 { width:180px;height:180px; background:radial-gradient(circle,rgba(201,162,39,0.1),transparent 70%); right:22%;bottom:20%; animation-duration:13s;animation-delay:-2s; }
+        @keyframes bokehFloat { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(25px,-35px) scale(1.1)} }
 
-        .event-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-        .event-card { position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(180deg, #fff, #f7f1e8); padding: 2rem; box-shadow: var(--shadow); transition: transform 0.35s ease, box-shadow 0.35s ease; }
-        .event-card:hover { transform: translateY(-8px); box-shadow: 0 28px 60px rgba(35,30,24,0.18); }
-        .event-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(201,162,39,0.18), transparent 38%); pointer-events: none; }
-        .event-tag { display: inline-flex; align-items: center; justify-content: center; padding: 0.55rem 1rem; border-radius: 999px; background: rgba(201,162,39,0.14); color: var(--accent); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; }
-        .event-card h3 { margin: 1.1rem 0 0.85rem; font-size: 1.25rem; line-height: 1.3; }
-        .event-card p { color: var(--muted); line-height: 1.78; }
-        .event-meta { margin-top: 1.4rem; color: var(--primary); font-weight: 600; font-size: 0.95rem; }
+        /* Diagonal gold lines */
+        .hero-lines { position:absolute;inset:0;pointer-events:none;overflow:hidden; }
+        .hero-lines span {
+            position:absolute;
+            background:linear-gradient(180deg,transparent,rgba(201,162,39,0.18),transparent);
+            width:1px;height:200%;top:-50%;
+            animation:lineDrift 14s ease-in-out infinite alternate;
+        }
+        .hero-lines span:nth-child(1){left:20%;animation-delay:0s}
+        .hero-lines span:nth-child(2){left:52%;animation-delay:-5s}
+        .hero-lines span:nth-child(3){right:18%;animation-delay:-9s}
+        @keyframes lineDrift { 0%{transform:translateY(-4%) rotate(-6deg)} 100%{transform:translateY(4%) rotate(-6deg)} }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
-        .gallery-item { position: relative; overflow: hidden; border-radius: 24px; box-shadow: var(--shadow); }
-        .gallery-item img { height: 280px; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-item:hover img { transform: scale(1.05); }
-        .gallery-item .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%); opacity: 0; transition: opacity 0.4s ease; }
-        .gallery-item:hover .overlay { opacity: 1; }
-        .gallery-caption { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; margin: 0; color: #fff; font-size: 0.98rem; line-height: 1.6; z-index: 1; }
+        .hero-inner {
+            position: relative; z-index: 5;
+            max-width: 1200px; width: 100%;
+            margin: 0 auto; padding: 0 32px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: .65rem;
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--gold);
+            padding: .45rem 1rem;
+            border: 1px solid rgba(201,162,39,0.35);
+            border-radius: 999px;
+            background: rgba(201,162,39,0.06);
+            opacity: 0;
+            animation: slideDown .9s var(--ease-out) .2s forwards;
+        }
+        .eyebrow-dot { width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.7)} }
 
-        .detail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
-        .detail-card { border-radius: 28px; background: #fff; padding: 2rem; box-shadow: var(--shadow); border: 1px solid rgba(29,23,17,0.07); transition: transform 0.35s ease, box-shadow 0.35s ease; }
-        .detail-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(35,30,24,0.14); }
-        .detail-card h3 { margin-bottom: 1rem; }
-        .detail-card p { color: var(--muted); line-height: 1.8; }
-        .detail-list { display: grid; gap: 1rem; margin-top: 1.5rem; }
-        .detail-item { padding: 1rem 1.1rem; border-radius: 20px; background: #f8f3eb; border: 1px solid rgba(201,162,39,0.16); }
-        .detail-item strong { display: block; margin-bottom: 0.35rem; color: var(--primary); }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.2rem, 5.5vw, 5.4rem);
+            font-weight: 600; line-height: 0.98;
+            letter-spacing: -0.03em; color: var(--ink);
+            margin: 1.4rem 0 1.2rem;
+            opacity: 0; animation: slideUp .9s var(--ease-out) .4s forwards;
+        }
+        .hero-title em { font-style:italic; color:var(--crimson); display:block; }
+        .year-row { display:flex;align-items:center;gap:.8rem;color:var(--ash); }
+        .year-row::before { content:'';width:48px;height:2px;background:var(--gold);flex-shrink:0; }
 
-        .footer { margin-top: 3rem; padding-top: 1.5rem; color: var(--muted); font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .hero-sub {
+            font-size: 1rem; color: var(--ash);
+            max-width: 440px; line-height: 1.85;
+            opacity: 0; animation: slideUp .9s var(--ease-out) .6s forwards;
+        }
+        .hero-cta-row {
+            display: flex; gap: 1.2rem; align-items: center; margin-top: 2.2rem;
+            opacity: 0; animation: slideUp .9s var(--ease-out) .8s forwards;
+        }
+        .scroll-hint {
+            display:flex;align-items:center;gap:.55rem;
+            font-size:.84rem;color:var(--mist);text-decoration:none;
+            transition:color .25s;
+        }
+        .scroll-hint:hover { color:var(--crimson); }
+        .scroll-arrow {
+            width:36px;height:36px;border-radius:50%;
+            border:1.5px solid rgba(139,26,26,0.22);
+            display:flex;align-items:center;justify-content:center;
+            animation:bounce 2.2s ease-in-out infinite;
+        }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
 
-        .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.85s ease forwards; }
-        .fade-up.delay-1 { animation-delay: 0.1s; }
-        .fade-up.delay-2 { animation-delay: 0.2s; }
-        .fade-up.delay-3 { animation-delay: 0.3s; }
+        /* Right photo stack */
+        .hero-right { position:relative; opacity:0; animation:slideRight .9s var(--ease-out) .5s forwards; }
+        .frame-stack { position:relative; }
+        .frame-main {
+            border-radius:28px 8px 28px 8px; overflow:hidden;
+            box-shadow:var(--shadow-lg); aspect-ratio:4/3; position:relative;
+        }
+        .frame-main img { width:100%;height:100%;object-fit:cover;border-radius:0;display:block;transition:transform 8s ease; }
+        .frame-main:hover img { transform:scale(1.04); }
+        .frame-main::after { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,26,26,0.2) 0%,transparent 55%); }
+        .frame-main::before { content:'';position:absolute;inset:0;z-index:2;border-radius:28px 8px 28px 8px;border:1px solid rgba(201,162,39,0.2);pointer-events:none; }
 
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .hero-badge {
+            position:absolute;bottom:-18px;left:-18px;z-index:3;
+            background:var(--crimson);border-radius:18px;padding:1.1rem 1.5rem;
+            box-shadow:0 10px 32px rgba(139,26,26,0.35);
+        }
+        .badge-year { font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;line-height:1;color:var(--white); }
+        .badge-label { font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:2px; }
 
-        @media (max-width: 960px) { .event-grid, .gallery-grid, .detail-grid { grid-template-columns: 1fr; } .hero-title { font-size: 2.8rem; } }
-        @media (max-width: 620px) { .page-shell { padding: 120px 18px 32px; } }
+        .hero-star {
+            position:absolute;top:-14px;right:-14px;z-index:3;
+            width:58px;height:58px;border-radius:50%;
+            background:linear-gradient(135deg,var(--gold),var(--gold-lt));
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 6px 20px rgba(201,162,39,0.35);
+            animation:rotateSlow 14s linear infinite;font-size:1.5rem;
+        }
+        @keyframes rotateSlow { to{transform:rotate(360deg)} }
+
+        .frame-sm {
+            position:absolute;width:46%;bottom:-28px;right:-28px;z-index:2;
+            border-radius:20px;overflow:hidden;
+            box-shadow:var(--shadow-md),0 0 0 2px rgba(201,162,39,0.15);
+        }
+        .frame-sm img { width:100%;height:160px;object-fit:cover;display:block;border-radius:0; }
+
+        @keyframes slideUp    { from{opacity:0;transform:translateY(32px)}  to{opacity:1;transform:none} }
+        @keyframes slideDown  { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:none} }
+        @keyframes slideRight { from{opacity:0;transform:translateX(44px)}  to{opacity:1;transform:none} }
+
+        /* ─── HIGHLIGHT STRIP ────────────────────────────── */
+        .highlight-strip {
+            background: var(--ink);
+            position: relative; overflow: hidden;
+        }
+        .highlight-strip::before {
+            content:'';position:absolute;inset:0;
+            background:linear-gradient(90deg,var(--crimson-dk) 0%,var(--ink) 40%);
+            opacity:.7;
+        }
+        .hl-inner {
+            max-width:1200px;margin:0 auto;padding:2.8rem 32px;
+            position:relative;
+            display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;align-items:center;
+        }
+        .hl-item { text-align:center; }
+        .hl-icon { font-size:1.6rem;margin-bottom:.7rem;display:block; }
+        .hl-num { font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--white);line-height:1; }
+        .hl-num span { color:var(--gold); }
+        .hl-label { font-size:.78rem;color:rgba(255,255,255,0.48);letter-spacing:.1em;text-transform:uppercase;margin-top:.35rem; }
+        .hl-divider { width:1px;height:52px;background:rgba(255,255,255,0.1);margin:0 auto; }
+
+        /* ─── SECTION COMMONS ────────────────────────────── */
+        .section { max-width:1200px;margin:0 auto;padding:6rem 32px; }
+        .eyebrow { display:flex;align-items:center;gap:.8rem;margin-bottom:1rem; }
+        .eyebrow::before { content:'';width:32px;height:2px;background:var(--gold);flex-shrink:0; }
+        .eyebrow span { font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold); }
+        .sec-heading {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:600;line-height:1.1;
+            letter-spacing:-0.02em;color:var(--ink);margin-bottom:1rem;
+        }
+        .sec-sub { font-size:.98rem;color:var(--ash);max-width:520px;line-height:1.85; }
+
+        /* ─── FEATURED EVENT ─────────────────────────────── */
+        .event-feature {
+            margin-top:2.5rem;
+            display:grid;grid-template-columns:1.1fr 1fr;
+            border-radius:32px;overflow:hidden;
+            box-shadow:var(--shadow-lg);position:relative;
+            background:var(--ink);
+        }
+        .event-feature::before {
+            content:'';position:absolute;top:0;left:0;right:0;height:2px;
+            background:linear-gradient(90deg,var(--crimson),var(--gold),var(--crimson));z-index:2;
+        }
+        .event-content { padding:3.2rem;display:flex;flex-direction:column;justify-content:center; }
+        .event-tag-pill {
+            display:inline-flex;align-items:center;gap:.5rem;
+            padding:.5rem 1rem;border-radius:999px;
+            background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.28);
+            color:var(--gold-lt);font-size:.78rem;font-weight:700;
+            letter-spacing:.1em;text-transform:uppercase;width:fit-content;margin-bottom:1.4rem;
+        }
+        .ev-dot { width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite; }
+        .event-title { font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--white);line-height:1.08;margin-bottom:1.2rem; }
+        .event-desc { color:rgba(255,255,255,0.55);line-height:1.85;margin-bottom:2rem;font-size:.95rem; }
+        .tag-pills { display:flex;flex-wrap:wrap;gap:.6rem; }
+        .tag-pill { padding:.42rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);font-size:.82rem;transition:all .3s; }
+        .tag-pill:hover { background:rgba(201,162,39,0.1);border-color:rgba(201,162,39,0.3);color:var(--gold-lt); }
+        .event-img { position:relative;overflow:hidden; }
+        .event-img img { width:100%;height:100%;object-fit:cover;border-radius:0;display:block;transition:transform 6s ease; }
+        .event-img:hover img { transform:scale(1.06); }
+        .event-img::after { content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,20,16,0.45) 0%,transparent 55%); }
+
+        /* ─── MOMENTS CARDS ──────────────────────────────── */
+        .moments-wrap { padding:0 0 6rem; }
+        .moments-inner { max-width:1200px;margin:0 auto;padding:0 32px; }
+        .moments-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:2.5rem; }
+        .moment-card {
+            border-radius:24px;padding:2rem;
+            background:var(--white);
+            border:1px solid rgba(26,20,16,0.07);
+            box-shadow:var(--shadow-sm);
+            position:relative;overflow:hidden;
+            transition:transform .4s var(--ease-out),box-shadow .4s;
+        }
+        .moment-card:hover { transform:translateY(-8px);box-shadow:var(--shadow-md); }
+        .moment-card::after {
+            content:'';position:absolute;top:0;left:0;right:0;height:3px;
+            background:linear-gradient(90deg,var(--crimson),var(--gold));
+            transform:scaleX(0);transform-origin:left;
+            transition:transform .4s var(--ease-out);
+        }
+        .moment-card:hover::after { transform:scaleX(1); }
+        .moment-icon { font-size:1.8rem;margin-bottom:1.2rem;display:block; }
+        .moment-card h3 { font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--ink);margin-bottom:.65rem; }
+        .moment-card p { font-size:.9rem;color:var(--ash);line-height:1.8; }
+        .moment-highlight {
+            margin-top:1.1rem;padding:.65rem .9rem;
+            border-radius:10px;background:rgba(139,26,26,0.05);
+            border-left:3px solid var(--crimson);
+            font-size:.83rem;color:var(--crimson);font-weight:600;
+        }
+
+        /* ─── GALLERY ────────────────────────────────────── */
+        .gallery-section { background:var(--ink);padding:6rem 0; }
+        .gallery-inner { max-width:1200px;margin:0 auto;padding:0 32px; }
+        .gallery-section .sec-heading { color:var(--white); }
+        .gallery-section .sec-sub { color:rgba(255,255,255,0.5); }
+        .gallery-section .eyebrow span { color:rgba(255,255,255,0.5); }
+
+        .gallery-grid {
+            display:grid;grid-template-columns:repeat(12,1fr);gap:.9rem;margin-top:2.5rem;
+        }
+        .g-cell { position:relative;overflow:hidden;border-radius:20px;cursor:pointer;transition:box-shadow .4s; }
+        .g-cell:hover { box-shadow:0 0 0 2px rgba(201,162,39,0.4),0 20px 60px rgba(0,0,0,0.4); }
+        .g-cell-a { grid-column:span 5;grid-row:span 2; }
+        .g-cell-b { grid-column:span 7; }
+        .g-cell-c { grid-column:span 7; }
+        .g-cell img { width:100%;height:100%;object-fit:cover;border-radius:0;display:block;min-height:220px;transition:transform .65s var(--ease-out); }
+        .g-cell-a img { min-height:460px; }
+        .g-cell:hover img { transform:scale(1.07); }
+        .g-overlay { position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.7) 100%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.4rem; }
+        .g-cell:hover .g-overlay { opacity:1; }
+        .g-overlay p { color:var(--white);font-size:.9rem;font-weight:500; }
+        .g-cell::after { content:'✦';position:absolute;top:12px;right:14px;z-index:3;color:var(--gold);font-size:1.1rem;opacity:0;transform:scale(.5) rotate(-20deg);transition:opacity .35s,transform .35s var(--ease-spring); }
+        .g-cell:hover::after { opacity:.9;transform:scale(1) rotate(0deg); }
+
+        /* ─── PROGRAMME ──────────────────────────────────── */
+        .programme-section { background:var(--ivory);padding:6rem 0; }
+        .programme-inner { max-width:1200px;margin:0 auto;padding:0 32px; }
+        .programme-layout { display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;margin-top:2.5rem;align-items:start; }
+        .programme-sticky { position:sticky;top:130px; }
+        .info-card { background:var(--white);border:1px solid rgba(26,20,16,0.07);border-radius:28px;padding:2.4rem;box-shadow:var(--shadow-md); }
+        .info-card h3 { font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;color:var(--ink);margin-bottom:1rem; }
+        .info-card p { color:var(--ash);font-size:.93rem;line-height:1.85; }
+        .info-badge {
+            margin-top:1.8rem;padding:1.2rem;border-radius:16px;
+            background:linear-gradient(135deg,var(--crimson),var(--crimson-dk));
+            display:flex;align-items:center;gap:1rem;
+        }
+        .info-badge-icon { font-size:1.7rem;flex-shrink:0; }
+        .info-badge-text .t { font-size:.9rem;font-weight:700;color:var(--white); }
+        .info-badge-text .s { font-size:.78rem;color:rgba(255,255,255,0.6); }
+
+        .agenda { display:grid;gap:.9rem; }
+        .ag-item {
+            display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:start;
+            padding:1.4rem;border-radius:18px;
+            background:var(--white);border:1px solid rgba(26,20,16,0.07);
+            box-shadow:var(--shadow-sm);
+            transition:transform .35s var(--ease-out),box-shadow .35s;
+        }
+        .ag-item:hover { transform:translateX(8px);box-shadow:var(--shadow-md); }
+        .ag-num {
+            width:42px;height:42px;border-radius:12px;
+            background:rgba(139,26,26,0.08);color:var(--crimson);
+            font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;
+            display:flex;align-items:center;justify-content:center;flex-shrink:0;
+            transition:background .3s,color .3s;
+        }
+        .ag-item:hover .ag-num { background:var(--crimson);color:var(--white); }
+        .ag-body strong { display:block;font-size:.93rem;font-weight:600;color:var(--ink);margin-bottom:.28rem; }
+        .ag-body p { font-size:.86rem;color:var(--mist);line-height:1.65; }
+
+        /* ─── CLOSING QUOTE ──────────────────────────────── */
+        .closing {
+            background:linear-gradient(135deg,var(--crimson),var(--crimson-dk));
+            padding:5.5rem 32px;text-align:center;position:relative;overflow:hidden;
+        }
+        .closing::before {
+            content:'"';position:absolute;
+            font-family:'Cormorant Garamond',serif;font-size:28rem;
+            color:rgba(255,255,255,0.04);line-height:1;top:-4rem;left:50%;
+            transform:translateX(-50%);pointer-events:none;
+        }
+        .closing-inner { position:relative;max-width:740px;margin:0 auto; }
+        .closing-stars { font-size:1.1rem;letter-spacing:.6rem;color:rgba(255,255,255,0.55);margin-bottom:1.5rem; }
+        .closing-quote {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(1.8rem,3vw,2.8rem);font-style:italic;font-weight:400;
+            color:var(--white);line-height:1.45;margin-bottom:1.5rem;
+        }
+        .closing-attr { font-size:.86rem;color:rgba(255,255,255,0.55);letter-spacing:.1em;text-transform:uppercase; }
+        .closing-attr strong { color:var(--gold-lt); }
+
+        /* ─── FOOTER ─────────────────────────────────────── */
+        footer { background:var(--ink);padding:2.2rem 32px;border-top:1px solid rgba(255,255,255,0.06); }
+        .footer-inner {
+            max-width:1200px;margin:0 auto;
+            display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+        }
+        .footer-inner span { font-size:.88rem;color:rgba(255,255,255,0.35); }
+
+        /* ─── REVEAL ─────────────────────────────────────── */
+        .reveal       { opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out); }
+        .reveal-left  { opacity:0;transform:translateX(-36px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out); }
+        .reveal-right { opacity:0;transform:translateX(36px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out); }
+        .reveal.vis,.reveal-left.vis,.reveal-right.vis { opacity:1;transform:none; }
+
+        .stagger .moment-card:nth-child(1),.stagger .ag-item:nth-child(1),.stagger .g-cell:nth-child(1){ transition-delay:0s }
+        .stagger .moment-card:nth-child(2),.stagger .ag-item:nth-child(2),.stagger .g-cell:nth-child(2){ transition-delay:.12s }
+        .stagger .moment-card:nth-child(3),.stagger .ag-item:nth-child(3),.stagger .g-cell:nth-child(3){ transition-delay:.24s }
+        .stagger .ag-item:nth-child(4){ transition-delay:.36s }
+        .stagger .ag-item:nth-child(5){ transition-delay:.48s }
+
+        /* ─── RESPONSIVE ─────────────────────────────────── */
+        @media(max-width:1024px){
+            .hero-inner{grid-template-columns:1fr;text-align:center}
+            .hero-sub{margin:0 auto}
+            .hero-cta-row{justify-content:center}
+            .hero-right{display:none}
+            .event-feature{grid-template-columns:1fr}
+            .event-img{min-height:260px}
+            .moments-grid{grid-template-columns:1fr 1fr}
+            .gallery-grid{grid-template-columns:1fr 1fr}
+            .g-cell-a,.g-cell-b,.g-cell-c{grid-column:span 1}
+            .g-cell-a img{min-height:260px}
+            .programme-layout{grid-template-columns:1fr}
+            .programme-sticky{position:static}
+            .hl-inner{grid-template-columns:1fr 1fr}
+            .hl-divider{display:none}
+        }
+        @media(max-width:680px){
+            .nav-links{display:none}
+            .moments-grid{grid-template-columns:1fr}
+            .gallery-grid{grid-template-columns:1fr}
+            .hl-inner{grid-template-columns:1fr 1fr}
+            .section{padding:4rem 20px}
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <a class="brand" href="kerdos_rebuilt.html">
-                <div class="brand-icon">
-                    <img src="assets/kmpc-logo.png" alt="KMPC Logo">
+
+<canvas id="snow"></canvas>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+    <div class="navbar">
+        <a class="brand" href="kerdos_rebuilt.html">
+            <div class="brand-icon">
+                <img src="assets/kmpc-logo.png" alt="KMPC Logo">
+            </div>
+            <div class="brand-text">
+                <div class="name">KMPC</div>
+                <div class="tag">Kerdos Multi Purpose Cooperative</div>
+            </div>
+        </a>
+        <nav class="nav-links">
+            <a href="kerdos_rebuilt.html#about">About</a>
+            <a href="kerdos_rebuilt.html#testimonials">Testimonials</a>
+            <a href="kerdos_rebuilt.html#news">News</a>
+            <a href="kerdos_rebuilt.html#contact">Contact</a>
+        </nav>
+        <div class="nav-actions">
+            <a href="kerdos_details.html" class="btn btn-secondary">Member Benefits</a>
+            <a href="kerdos_rebuilt.html#membership" class="btn btn-primary">Be a Member</a>
+        </div>
+    </div>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="bokeh b1"></div><div class="bokeh b2"></div>
+        <div class="bokeh b3"></div><div class="bokeh b4"></div>
+        <div class="hero-lines"><span></span><span></span><span></span></div>
+
+        <div class="hero-inner">
+            <div class="hero-left">
+                <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Member Celebration</div>
+                <h1 class="hero-title">
+                    Christmas<br><em>Party</em>
+                    <div class="year-row">2025</div>
+                </h1>
+                <p class="hero-sub">A festive evening of recognition, community, and celebration shared with every member of the KMPC family.</p>
+                <div class="hero-cta-row">
+                    <a href="#moments" class="btn btn-primary">View Highlights</a>
+                    <a href="#gallery" class="scroll-hint">
+                        <span class="scroll-arrow">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M7 2v10M2.5 7.5l4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        See Gallery
+                    </a>
                 </div>
-                <div class="brand-text">
-                    <div class="name">KMPC</div>
-                    <div class="tag">Kerdos Multi Purpose Cooperative</div>
+            </div>
+            <div class="hero-right">
+                <div class="frame-stack">
+                    <div class="frame-main">
+                        <img src="assets/599776028_1368916584934232_1924440668260519571_n.jpg" alt="Christmas Party 2025">
+                    </div>
+                    <div class="hero-badge">
+                        <div class="badge-year">2025</div>
+                        <div class="badge-label">Christmas Party</div>
+                    </div>
+                    <div class="hero-star">🎄</div>
+                    <div class="frame-sm">
+                        <img src="assets/601388136_1368917874934103_1984094337245995261_n.jpg" alt="Party moments">
+                    </div>
                 </div>
-            </a>
-            <nav class="nav-links">
-                <a href="kerdos_rebuilt.html#about">About</a>
-                <a href="kerdos_rebuilt.html#testimonials">Testimonials</a>
-                <a href="kerdos_rebuilt.html#news">News</a>
-                <a href="kerdos_rebuilt.html#contact">Contact</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="kerdos_details.html" class="btn btn-secondary">Member Benefits</a>
-                <a href="kerdos_rebuilt.html#membership" class="btn btn-primary">Be a Member</a>
             </div>
         </div>
-    </header>
-    <div class="page-shell">
+    </section>
 
-        <section class="hero fade-up delay-1">
-            <span class="hero-top">Member Celebration</span>
-            <div class="hero-head">
-                <h1 class="hero-title">Christmas Party 2025.</h1>
-                <p class="hero-copy">A professional showcase of the KMPC Christmas Party, featuring elegant visuals, event highlights, and member celebration details.</p>
-            </div>
-        </section>
-
-        <section class="section fade-up delay-2">
-            <div class="section-title">
-                <div class="label">Featured Event</div>
-                <h2>The highlight of our 2025 celebrations.</h2>
-            </div>
-            <div class="event-grid" style="grid-template-columns: 1fr;">
-                <article class="event-card">
-                    <div class="event-tag">Holiday</div>
-                    <h3>Christmas Party 2025</h3>
-                    <p>Members celebrated the season with a refined evening of awards, entertainment, and holiday hospitality.</p>
-                    <div class="event-meta">December 2025</div>
-                </article>
-            </div>
-        </section>
-
-        <section class="section fade-up delay-3">
-            <div class="section-title">
-                <div class="label">Photo Highlights</div>
-                <h2>Visual moments from the Christmas Party.</h2>
-            </div>
-            <div class="gallery-grid">
-                <article class="gallery-item">
-                    <img src="assets/599776028_1368916584934232_1924440668260519571_n.jpg" alt="Christmas Party 2025 celebration">
-                    <div class="overlay"></div>
-                    <p class="gallery-caption">Festive atmosphere and member appreciation.</p>
-                </article>
-                <article class="gallery-item">
-                    <img src="assets/603873671_1368916534934237_1958915149785791549_n.jpg" alt="Christmas Party decorations">
-                    <div class="overlay"></div>
-                    <p class="gallery-caption">Holiday decorations and seasonal cheer.</p>
-                </article>
-                <article class="gallery-item">
-                    <img src="assets/601388136_1368917874934103_1984094337245995261_n.jpg" alt="Christmas Party group photo">
-                    <div class="overlay"></div>
-                    <p class="gallery-caption">Group celebrations and community bonding.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section fade-up delay-1">
-            <div class="section-title">
-                <div class="label">Program Details</div>
-                <h2>Event highlights and outcomes.</h2>
-            </div>
-            <div class="detail-grid" style="grid-template-columns: 1fr;">
-                <article class="detail-card">
-                    <h3>Christmas Party 2025</h3>
-                    <p>Elegant event design with member-focused recognition, festive performances, and cooperative celebration.</p>
-                    <div class="detail-list">
-                        <div class="detail-item"><strong>Highlights</strong> Awards presentation, holiday entertainment, member networking.</div>
-                        <div class="detail-item"><strong>Result</strong> Elevated member engagement and internal brand enthusiasm.</div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <footer class="footer fade-up delay-2">
-            <span>KMPC Member Celebration</span>
-            <span>Professional event page for 2025 celebration highlights.</span>
-        </footer>
+    <!-- HIGHLIGHT STRIP -->
+    <div class="highlight-strip">
+        <div class="hl-inner reveal">
+            <div class="hl-item"><span class="hl-icon">🎉</span><div class="hl-num" data-target="1">0</div><div class="hl-label">Annual Celebration</div></div>
+            <div class="hl-divider"></div>
+            <div class="hl-item"><span class="hl-icon">🏆</span><div class="hl-num" data-target="100">0<span>%</span></div><div class="hl-label">Member Appreciation</div></div>
+            <div class="hl-divider"></div>
+            <div class="hl-item"><span class="hl-icon">🎵</span><div class="hl-num" data-target="3">0</div><div class="hl-label">Live Performances</div></div>
+            <div class="hl-divider"></div>
+            <div class="hl-item"><span class="hl-icon">⭐</span><div class="hl-num" data-target="2025">0</div><div class="hl-label">Year of Celebration</div></div>
+        </div>
     </div>
+
+    <!-- FEATURED EVENT -->
+    <section class="section" id="moments">
+        <div class="eyebrow reveal"><span>Featured Event</span></div>
+        <h2 class="sec-heading reveal">The highlight of our<br>2025 celebrations.</h2>
+        <p class="sec-sub reveal">An elegant evening crafted for members — filled with warmth, recognition, and the spirit of togetherness.</p>
+        <div class="event-feature reveal">
+            <div class="event-content">
+                <div class="event-tag-pill"><span class="ev-dot"></span>Holiday Celebration</div>
+                <h2 class="event-title">Christmas<br>Party 2025</h2>
+                <p class="event-desc">Members gathered for a refined evening of awards, entertainment, and holiday hospitality. A night designed to honor the spirit of community that makes KMPC extraordinary.</p>
+                <div class="tag-pills">
+                    <span class="tag-pill">🎖️ Awards Night</span>
+                    <span class="tag-pill">🎤 Entertainment</span>
+                    <span class="tag-pill">🤝 Networking</span>
+                    <span class="tag-pill">🎁 Gift Giving</span>
+                </div>
+            </div>
+            <div class="event-img">
+                <img src="assets/603873671_1368916534934237_1958915149785791549_n.jpg" alt="Christmas Party 2025">
+            </div>
+        </div>
+    </section>
+
+    <!-- MOMENTS -->
+    <section class="moments-wrap">
+        <div class="moments-inner">
+            <div class="eyebrow reveal"><span>Celebration Moments</span></div>
+            <h2 class="sec-heading reveal">What made the night<br>unforgettable.</h2>
+            <div class="moments-grid stagger">
+                <div class="moment-card reveal">
+                    <span class="moment-icon">🎖️</span>
+                    <h3>Member Recognition</h3>
+                    <p>Outstanding contributions were honored with awards, celebrating the dedication that drives the cooperative forward.</p>
+                    <div class="moment-highlight">Awards presented to top members</div>
+                </div>
+                <div class="moment-card reveal">
+                    <span class="moment-icon">🎤</span>
+                    <h3>Live Entertainment</h3>
+                    <p>Performances and festivities filled the evening with joy, laughter, and the holiday spirit the whole family enjoyed.</p>
+                    <div class="moment-highlight">Live music &amp; seasonal performances</div>
+                </div>
+                <div class="moment-card reveal">
+                    <span class="moment-icon">🤝</span>
+                    <h3>Community Bonding</h3>
+                    <p>Members connected across tables and conversations, strengthening the bonds that make KMPC more than a cooperative.</p>
+                    <div class="moment-highlight">Elevated member engagement</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-inner">
+            <div class="eyebrow reveal"><span>Photo Highlights</span></div>
+            <h2 class="sec-heading reveal">Visual moments from<br>the Christmas Party.</h2>
+            <p class="sec-sub reveal">Snapshots of joy, community, and celebration shared by every member present.</p>
+            <div class="gallery-grid stagger">
+                <div class="g-cell g-cell-a reveal">
+                    <img src="assets/599776028_1368916584934232_1924440668260519571_n.jpg" alt="Celebration">
+                    <div class="g-overlay"><p>Festive atmosphere and member appreciation.</p></div>
+                </div>
+                <div class="g-cell g-cell-b reveal">
+                    <img src="assets/603873671_1368916534934237_1958915149785791549_n.jpg" alt="Decorations">
+                    <div class="g-overlay"><p>Holiday decorations and seasonal cheer.</p></div>
+                </div>
+                <div class="g-cell g-cell-c reveal">
+                    <img src="assets/601388136_1368917874934103_1984094337245995261_n.jpg" alt="Group photo">
+                    <div class="g-overlay"><p>Group celebrations and community bonding.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMME -->
+    <section class="programme-section" id="programme">
+        <div class="programme-inner">
+            <div class="eyebrow reveal"><span>Programme Details</span></div>
+            <h2 class="sec-heading reveal">Event highlights<br>and outcomes.</h2>
+            <div class="programme-layout">
+                <div class="programme-sticky reveal-left">
+                    <div class="info-card">
+                        <h3>Christmas Party 2025</h3>
+                        <p>An elegant celebration of the cooperative spirit — designed to appreciate every member's contribution and close the year on a high note of unity and warmth.</p>
+                        <div class="info-badge">
+                            <span class="info-badge-icon">🎄</span>
+                            <div class="info-badge-text">
+                                <div class="t">KMPC Official Celebration</div>
+                                <div class="s">December 2025 · Members Only</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agenda stagger reveal-right">
+                    <div class="ag-item reveal"><div class="ag-num">01</div><div class="ag-body"><strong>Welcome &amp; Opening Program</strong><p>Reception of guests and opening remarks from cooperative leadership, setting the tone for the evening's celebration.</p></div></div>
+                    <div class="ag-item reveal"><div class="ag-num">02</div><div class="ag-body"><strong>Dinner &amp; Fellowship</strong><p>A festive dinner bringing members together for conversation, connection, and appreciation of the year's shared journey.</p></div></div>
+                    <div class="ag-item reveal"><div class="ag-num">03</div><div class="ag-body"><strong>Awards &amp; Recognition</strong><p>Presentation of awards honoring outstanding members, dedicated volunteers, and top performers of the cooperative year.</p></div></div>
+                    <div class="ag-item reveal"><div class="ag-num">04</div><div class="ag-body"><strong>Entertainment &amp; Performances</strong><p>Live performances, seasonal entertainment, and games that brought energy and festivity to the evening celebration.</p></div></div>
+                    <div class="ag-item reveal"><div class="ag-num">05</div><div class="ag-body"><strong>Gift Exchange &amp; Closing</strong><p>A heartfelt exchange of gifts among members, followed by closing remarks and a look ahead to the new year together.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSING QUOTE -->
+    <section class="closing">
+        <div class="closing-inner reveal">
+            <div class="closing-stars">✦ ✦ ✦</div>
+            <blockquote class="closing-quote">"Every year-end celebration is a reminder of why we built this cooperative — for each other, together."</blockquote>
+            <div class="closing-attr">KMPC Leadership · <strong>Christmas Party 2025</strong></div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-inner">
+        <span>KMPC Member Celebration</span>
+        <span>Professional event page for 2025 celebration highlights.</span>
+    </div>
+</footer>
+
+<script>
+/* SNOWFALL */
+(function(){
+    const c=document.getElementById('snow'),ctx=c.getContext('2d');
+    let W,H,flakes=[];
+    function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+    resize();window.addEventListener('resize',resize);
+    for(let i=0;i<90;i++) flakes.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*2.2+0.7,s:Math.random()*0.6+0.2,dx:Math.random()*.5-.25,o:Math.random()*.4+.1});
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        flakes.forEach(f=>{
+            ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+            ctx.fillStyle=`rgba(100,80,60,${f.o})`;ctx.fill();
+            f.y+=f.s;f.x+=f.dx;
+            if(f.y>H){f.y=-5;f.x=Math.random()*W;}
+            if(f.x>W)f.x=0;if(f.x<0)f.x=W;
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* CURSOR */
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR);})();
+
+/* REVEAL */
+const revEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.12});
+revEls.forEach(el=>io.observe(el));
+
+/* COUNT-UP */
+document.querySelectorAll('[data-target]').forEach(el=>{
+    const obs=new IntersectionObserver(entries=>{
+        if(!entries[0].isIntersecting)return;
+        const target=+el.dataset.target,suffix=el.querySelector('span')?.textContent||'';
+        const dur=1400,start=Date.now();
+        const tick=()=>{const p=Math.min((Date.now()-start)/dur,1),val=Math.round((1-Math.pow(1-p,3))*target);el.innerHTML=val+(suffix?`<span>${suffix}</span>`:'');if(p<1)requestAnimationFrame(tick);};
+        tick();obs.unobserve(el);
+    },{threshold:.5});
+    obs.observe(el);
+});
+
+/* PARALLAX */
+const bokeh=document.querySelectorAll('.bokeh');
+document.addEventListener('mousemove',e=>{
+    const x=(e.clientX/innerWidth-.5)*28,y=(e.clientY/innerHeight-.5)*18;
+    bokeh.forEach((b,i)=>{const f=(i+1)*.4;b.style.transform=`translate(${x*f}px,${y*f}px)`;});
+});
+</script>
 </body>
 </html>
